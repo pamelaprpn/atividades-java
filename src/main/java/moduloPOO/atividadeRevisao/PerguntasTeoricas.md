@@ -16,16 +16,18 @@ Para cada código abaixo, diga qual princípio do SOLID está sendo violado e ex
 
 a) Princípio violado: S, corrigiria separando as responsabilidades em classes diferentes:
         java
+```
         class Relatorio {
             void calcularTotais() { /* ... */ }
             void formatarEmPdf() { /* ... */ }
             void salvarNoDisco() { /* ... */ }
             void enviarPorEmail() { /* ... */ }
         }
-
+```
 
 b) Princípio violado: O , corrigiria utilizando interfaces e polimorfismo para permitir novos tipos de mensagens sem modificar a logica de envio
         java
+```
         class EnviadorEmail {
             void enviar(String tipo) {
                 if (tipo.equals("aniversario")) {
@@ -37,10 +39,11 @@ b) Princípio violado: O , corrigiria utilizando interfaces e polimorfismo para 
                 }
             }
         }
-
+```
 c) Princípio violado: D corrigiria aplicando interface e injeção de dependencia - Para corrigir, criaria uma interface PedidoRepositorio
 e faria PedidoService receber essa dependência pelo construtor. Dessa forma, seria possível trocar a implementação do repositório sem modificar a lógica do serviço
         java
+```
         class PedidoService {
             private MySQLRepositorio repo = new MySQLRepositorio();
 
@@ -48,7 +51,7 @@ e faria PedidoService receber essa dependência pelo construtor. Dessa forma, se
                 repo.salvar();
             }
         }
-
+```
 Questão 4: Modificadores de acesso
 
 Explique quem pode acessar um atributo ou método declarado com cada modificador:
@@ -61,34 +64,35 @@ d) public: pode ser acessado por qualquer classe, inclusive outros pacotes, desd
 Quais princípios e conceitos de POO você usou em cada etapa do exercicio Sistema de funcionarios?
 
 1 - Encapsulamento, ao declarar atributos como private e utilizar getters e setter para controlar acesso
-
+```
 public abstract class Funcionario {
 private String nome;
 private double salarioBase;
 }
-
+```
 2 - na classe funcionário o metodo abstrato é usado pra definir que todo funcionario deve calcularSalario, mas deixa a implementação para as 
 classes filhas - abstração
-
+```
 public abstract double calcularSalario();
-
+```
 3 - Polimorfismo, permite que uma variavel do tipo funcionario referencie objetos de diferentes subclasses, como desenvolvedor e gerente
 com isso, cada objeto executa sua propria implementação 
 E temos tbm Herança que permite que Desenvolvedor e Gerente sejam tipos de Funcionario
-
+```
 Funcionario funcionario = new Desenvolvedor("Pamela", 7000);
 System.out.println(funcionario.calcularSalario());
-
+```
 4 - implementação de interfaces, quando uma classe usa implements, ela assume o compromisso de implementar os metodos abstratos definidos
 pela interface
-
+```
 public interface Notificador {
 void notificar(String mensagem);
 }
-
+```
 5 - Principio de inversão de dependencia, queremos que folhaPagamento dependa de uma abstração permitindo trocar a implementação
 de notificação sem modificar seu código
 
+```
 public class FolhaPagamento {
 
     private Notificador notificador;
@@ -97,13 +101,16 @@ public class FolhaPagamento {
         this.notificador = notificador;
     }
 }
+```
 
 6 - Polimorfismo - podemos passar objetos diferentes que podem ser utilizados por meio de um mesmo tipo
 
+```
 FolhaPagamento folhaEmail =
 new FolhaPagamento(new NotificadorEmail());
 
 FolhaPagamento folhaSms =
 new FolhaPagamento(new NotificadorSms());
+```
 
 
