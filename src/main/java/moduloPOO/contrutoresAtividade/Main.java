@@ -3,27 +3,19 @@ package moduloPOO.contrutoresAtividade;
 public class Main {
     public static void main(String[] args) {
 
-        Agendamento thor = new Agendamento(
-                "Thor", "banho", "14h",
-                true, true, false,
-                "alérgico a shampoo", 10
-        );
+        Agendamento thor = Agendamento.builder().nomePet("Thor").servico("banho").horario("14h")
+                .perfume(true).laco(true).hidratacao(false).observacao("alérgico a shampoo").desconto(10).build();
 
-        Agendamento luna = new Agendamento(
-                "Luna", "tosa", "10h",
-                false, false, false,
-                null, 0
-        );
+        Agendamento luna = Agendamento.builder().nomePet("Luna").servico("tosa").horario("10h")
+                .perfume(false).laco(false).hidratacao(false).observacao(null).desconto(0).build();
 
-        Agendamento mel = new Agendamento(
-                "Mel", "banho", "16h",
-                false, false, true,
-                null, 0
-        );
+        Agendamento mel = Agendamento.builder().nomePet("Mel").servico("banho").horario("16h")
+                .perfume(false).laco(false).hidratacao(true).observacao(null).desconto(0).build();
 
         thor.mostrar();
         luna.mostrar();
         mel.mostrar();
+
     }
 }
 
